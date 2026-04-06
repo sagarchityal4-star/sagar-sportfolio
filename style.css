@@ -1,0 +1,325 @@
+/* =========================================
+   1. CORE VARIABLES & SETUP
+   ========================================= */
+:root {
+    /* DEFAULT (LIGHT) THEME */
+    --primary-color: #2c3e50; /* Deep navy */
+    --accent-color: #3498db;  /* Modern bright blue */
+    --bg-color: #ffffff;      /* Pure white */
+    --bg-card: #f9fbfd;       /* Off-white for content areas */
+    --text-main: #333333;
+    --text-muted: #666666;
+    --particle-color: "#d1d5db"; /* Subtle gray for particles */
+    
+    /* Global Styles */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --transition-speed: 0.3s;
+    --font-main: 'Poppins', 'Helvetica Neue', sans-serif; /* A clean, modern font */
+}
+
+/* 2. DARK THEME DEFINITIONS (Activated via class) */
+.dark-theme {
+    --primary-color: #ecf0f1;
+    --accent-color: #5dade2;   /* A slightly brighter blue for dark background */
+    --bg-color: #1a1a2e;       /* Deep obsidian/midnight blue */
+    --bg-card: #16213e;        /* Darker card backgrounds */
+    --text-main: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --particle-color: "#ffffff"; /* White particles for contrast */
+}
+
+/* =========================================
+   3. BASIC STYLES & LAYOUT
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Modern smooth scrolling between sections */
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-speed);
+}
+
+/* =========================================
+   4. THE UNIQUE UNIQUE BACKGROUND (Particles.js)
+   ========================================= */
+#particles-js {
+    position: fixed; /* Fixes it to the screen viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Pushes it behind all other content */
+    background-color: var(--bg-color); /* Matches the current theme's base color */
+    transition: background-color var(--transition-speed);
+}
+
+/* Content wrapper keeps our site data in front and centered */
+.content-wrapper {
+    position: relative;
+    z-index: 1; /* Ensures it sits above particles */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   5. NAVIGATION & HEADER
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    position: sticky; /* Modern fixed nav on scroll */
+    top: 0;
+    background-color: transparent; /* Allows unique bg to show through subtly */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+nav a {
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* Theme Toggle Button */
+.btn-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toggle icon state control */
+.light-theme .sun, .dark-theme .moon {
+    display: none;
+}
+.light-theme .moon, .dark-theme .sun {
+    display: inline;
+}
+
+/* =========================================
+   6. SECTIONS (General)
+   ========================================= */
+.section {
+    padding: 80px 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 50px;
+}
+
+/* =========================================
+   7. SECTION SPECIFIC STYLES
+   ========================================= */
+
+/* Hero (Home) */
+.hero {
+    height: 90vh; /* Takes most of the viewport height */
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Photo on left, text on right */
+    gap: 50px;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 5px solid var(--accent-color);
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.highlight {
+    color: var(--accent-color);
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 30px;
+    margin-top: 25px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px); /* Small hover animation */
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* About Grid */
+.grid-about {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* Basic Card Styling */
+.info-card, .project-card, .gallery-item {
+    background-color: var(--bg-card);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.info-card h3, .project-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.project-card:hover, .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 180px; /* Force consistent heights for screenshots */
+    object-fit: cover;
+}
+
+.btn-secondary {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+/* Gallery & Certificates Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items across */
+    gap: 20px;
+}
+
+.gallery-item {
+    padding: 15px;
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.gallery-caption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+}
+
+.contact-links {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Good for mobile */
+}
+
+.contact-link {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+}
+
+.contact-link:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   8. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+/* Tablet & Small Desktop (Max width 1024px) */
+@media (max-width: 1024px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Mobile Devices (Max width 768px) */
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr; /* Stack content vertically */
+        text-align: center;
+    }
+    .profile-photo { margin: 0 auto; }
+    .hero-text h1 { font-size: 2.5rem; }
+    header nav { display: none; } /* Hide navigation menu on mobile for simplicity */
+    .grid-about { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
